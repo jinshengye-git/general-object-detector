@@ -14,7 +14,6 @@ GROUP_ID=$(id -g)
 docker run --rm --gpus all \
     --privileged \
     --network=host \
-    --user=${USER_ID}:${GROUP_ID} \
     --name="general_obj_detect" \
     --env="NVIDIA_DRIVER_CAPABILITIES=all" \
     --env="QT_X11_NO_MITSHM=1" \

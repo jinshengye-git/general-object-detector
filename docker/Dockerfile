@@ -47,6 +47,8 @@ RUN pip3 install ultralytics
 
 RUN git clone https://github.com/jinshengye-git/general-object-detector.git
 
-USER ${USERNAME}
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-RUN curl -sLf https://spacevim.org/cn/install.sh | bash
+#USER ${USERNAME}
+#RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#RUN curl -sLf https://spacevim.org/cn/install.sh | bash
+
+

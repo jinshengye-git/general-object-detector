@@ -48,8 +48,9 @@ def vehicles(frame, boxes, count, focal_length):
     Return:
     Frame with overlaid distances
     """
-    
-    box = boxes[count].numpy()
+    boxes_cpu = boxes.cpu()
+    box = boxes_cpu[count].numpy()
+    #box = boxes[count].numpy()
     width = None
 
     # Get box dimensions.
@@ -73,8 +74,7 @@ def vehicles(frame, boxes, count, focal_length):
         distance = np.around((vehicle_width * focal_length) / (width*5), decimals=0)*5
         bb_text = "{:.0f}m".format(distance)
         font = cv.FONT_HERSHEY_SIMPLEX
-        cv.putText(frame, bb_text, (x1,int(y1-5)), font, 0.8, constants.box_colours()["motor"], 2)
-
+        cv.putText(frame, bb_text, (int(x1),int(y1-5)), font, 0.8, constants.box_colours()["motor"], 3)
     return frame
 
 
@@ -177,7 +177,7 @@ def estimate(frame, boxes, model_type, labels, video_file):
     """
     
     # Focal length in pixels.
-    focal_length = get_focal_length(video_file)
+    focal_length = 800#get_focal_length(video_file)
 
     if (model_type in coco.supported_models()):
         count = 0

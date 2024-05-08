@@ -85,6 +85,7 @@ def yolo_predict(model, frame, thresh = 0.6):
     keep = conf > thresh
     boxes = boxes[keep]
     conf = conf[keep]
+    labels = labels.to(keep.device)
     labels = labels[keep]
 
     # Convert COCO labels because some classes were removed

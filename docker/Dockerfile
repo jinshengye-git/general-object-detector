@@ -21,22 +21,7 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
-RUN if getent group ${GROUP_ID} ; then \
-      echo "Group exists"; \
-    else \
-      groupadd -g ${GROUP_ID} ${USERNAME}; \
-    fi
 
-RUN useradd -ml -u ${USER_ID} -g ${GROUP_ID} -s /bin/bash ${USERNAME}
-
-RUN chown ${USER_NAME}:${USERNAME} -R /home/${USERNAME}
-
-# Check if the user exists in the container
-RUN if ! id -u ${USERNAME} >/dev/null 2>&1; then \
-        echo "Error: User ${USERNAME} does not exist in the container."; \
-        exit 1; \
-    fi
-RUN echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL">/etc/sudoers.d/${USERNAME}
 
 RUN apt-get update -y && apt-get install --no-install-recommends software-properties-common lsb-release wget git git-lfs htop curl net-tools zsh zstd gawk tmux screen less udev build-essential cmake libboost-all-dev vim -y 
 RUN apt-get install -y python3-pip python3-numpy python3-scipy python3-matplotlib openssh-client python3-setuptools libbluetooth-dev libeigen3-dev libarmadillo-dev libceres-dev libgoogle-glog-dev libgflags-dev libatlas-base-dev libsuitesparse-dev ffmpeg libgl1 libsm6 libxext6

@@ -6,9 +6,6 @@ xhost +
 # docker run --runtime=nvidia --rm -it --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" kaibo_env_gui glxgears
 
 # --env="QT_X11_NO_MITSHM=1" \ # prevent rviz menu turning black
-USER_ID=$(id -u)
-GROUP_ID=$(id -g)
-
 #--runtime=nvidia -d \
 
 docker run --rm --gpus all \
